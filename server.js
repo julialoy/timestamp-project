@@ -31,9 +31,13 @@ app.get("/api/timestamp/:date_string?", (req, res) => {
   // Return a new Date object if date string is undefined or an empty string
   if (dateString === undefined) {
     dateString = new Date();
+    utcString = dateString.toUTCString();
+    unix = dateString.getTime();
   } else if (dateString.length === 0) {
     dateString = new Date();
-  }
+    utcString = dateString.toUTCString();
+    unix = dateString.getTime();
+  } else {
 
   // Attempt to parse date string
   // Provide error if unable to parse
@@ -56,7 +60,7 @@ app.get("/api/timestamp/:date_string?", (req, res) => {
       unix = null;
     }
   }
-
+  }
   // console.log(`DATE STRING: ${dateString}`);
   // console.log(`UTC STRING: ${utcString}`);
   // console.log(`UNIX: ${unix}`);
@@ -67,7 +71,11 @@ app.get("/api/timestamp/:date_string?", (req, res) => {
   }
 
   // Return json object
-  res.json({unix: unix, utc: `${utcString}`});
+  if (utcString === "Invalid Date") {
+    res.json({error: `${utcString}`});
+  } else {
+    res.json({unix: unix, utc: `${utcString}`});
+  }
 });
 
 // listen for requests :)
