@@ -3,15 +3,23 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	color: #222;
-	background-color: #FaFaFa;
+	background-color: #90323D;
 	text-align: center;
 	line-height: 1.4em;
 }
 
+.heading {
+	background-color: #90323D;
+	color: white;
+	text-align: center;
+	padding: 5em 5em 0 5em;
+}
+
 .container {
-	padding: 0;
+	padding: 1em;
 	margin-top: 40px;
+	background-color: #D9CAB3;
+	border-radius: 10px;
 }
 
 h3 {
@@ -31,8 +39,8 @@ h3 {
 code {
   font-family: monospace;
   padding: 2px;
-  color: black;
-  background-color: #fff;
+  color: white;
+  background-color: #8C7A6B;
 }
 ol {
 	list-style-position: outside;
@@ -48,6 +56,13 @@ li {
   margin-bottom: 1em;
 }
 
-a {
-	color: #2574A9;
+a,
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.footer {
+	background-color: #90323D;
+	padding: 2em;
 }
