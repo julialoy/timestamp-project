@@ -27,7 +27,7 @@ app.get("/api/timestamp/:date_string?", (req, res) => {
   let dateString = req.params.date_string;
   let utcString = "";
   let unix = "";
-  console.log(`dateString is ${dateString}`);
+
   // Return a new Date object if date string is undefined or an empty string
   if (dateString === undefined) {
     dateString = new Date();
@@ -42,19 +42,8 @@ app.get("/api/timestamp/:date_string?", (req, res) => {
   // Attempt to parse date string
   // Provide error if unable to parse
   if (dateString.indexOf('-') === -1) {
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     try {
-      dateString = new Date(dateString / 1000);
-      console.log(`New date string: ${dateString}`);
-/*       tempYear = tempDate.getUTCFullYear();
-      tempMonth = tempDate.getUTCMonth();
-      tempDay = tempDate.getUTCDay();
-      tempHour = tempDate.getUTCHours();
-      tempMin = tempDate.getUTCMinutes();
-      tempSec = tempDate.getUTCSeconds();
-      tempMilli = tempDate.getUTCMilliseconds();
-      dateString = new Date(tempYear, tempMonth, tempDate, tempHour, tempMin, tempSec, tempMilli);
-      console.log(`New date string object: ${dateString}`); */
+      dateString = new Date(dateString.slice(0, 10) * 1000);
       utcString = dateString.toUTCString();
       unix = dateString.getTime();
     } catch {
@@ -72,9 +61,6 @@ app.get("/api/timestamp/:date_string?", (req, res) => {
     }
   }
   }
-  // console.log(`DATE STRING: ${dateString}`);
-  // console.log(`UTC STRING: ${utcString}`);
-  // console.log(`UNIX: ${unix}`);
 
   // Make sure unix value is an integer or null
   if (unix !== null) {
